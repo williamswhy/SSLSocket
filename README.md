@@ -3,7 +3,7 @@ An SSL socket server and client in JAVA
 
 ##Installation
 ```
-git clone 
+git clone https://github.com/why429/SSLSocket.git
 ```
 
 ##Usage
