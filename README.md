@@ -7,7 +7,6 @@ git clone
 ```
 
 ##Usage
-###Linux
 1. Compile & prepare files
 
   ```
