@@ -1,9 +1,9 @@
 /*
- * ServeOneJabber.java
+ * SocketHandler.java
  * Author: Williams Wang
- * Last Edit:1/16/17 by why
+ * Last Edit:3/3/17 by why
  * 
- * This class is reponsible for verifying the integrity of the request and parse it into a map for further processing.
+ * A Thread to deal with socket messages.
  */
 package server;
 
@@ -20,6 +20,11 @@ public class SocketHandler extends Thread {
 	private BufferedReader br = null;
 	private PrintWriter pw = null;
 
+	/*
+	 * Constructor - initialize variables
+	 * 
+	 * @param s - an ssl socket created by SocketListener
+	 */
 	public SocketHandler(SSLSocket s) {
 		socket = s;
 		try {
@@ -36,7 +41,9 @@ public class SocketHandler extends Thread {
 		while (true) {
 			String str;
 			try {
+				//read a line
 				str = br.readLine();
+				//if it is "END", disconnect
 				if (str.equals("END")) {
 					System.out.println("close......");
 					br.close();
@@ -44,12 +51,12 @@ public class SocketHandler extends Thread {
 					socket.close();
 					break;
 				}
+				//else, send "Message Received"
 				pw.println("Message Received");
 				pw.flush();
 				System.out.println("Client Socket Message:" + str);
 			} catch (Exception e) {
 				try {
-
 					br.close();
 					pw.close();
 					socket.close();
