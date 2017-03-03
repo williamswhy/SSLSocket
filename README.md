@@ -9,6 +9,7 @@ git clone
 ##Usage
 ###Linux
 1. Compile & prepare files
+
   ```
   javac -d bin src/client/*.java
   javac -d bin src/server/*.java
@@ -16,6 +17,7 @@ git clone
   cd bin
   ```
 2. Start server & client
+
   server:
   ```
   java server.MultiJabberServer
@@ -25,6 +27,7 @@ git clone
   java client.MultiJabberServer
   ```
 3. Customize SSL
+
   Create a client keystore file
   ```
   keytool -genkey -alias sslclient -keystore sslclientkeys
