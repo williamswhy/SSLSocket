@@ -4,10 +4,10 @@
  * Last Edit: 1/7/17 by why
  * 
  * This class is the client which can send ssl socket to MultiJabberServer. 
- * With both main() function and sendSocket() function, it can send a socket either from console
- * or inside programs. The return or output from the functions are the reponse from the socket.
+ * With both main() function and sendSocket() function, it can send socket both from console
+ * and inside programs. The return or output from the functions are the reponse from the socket.
  */
-package server;
+package client;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,9 +18,9 @@ import java.io.PrintWriter;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
-public class JabberClient {
+public class SocketClient {
 	public static void main(String[] args) {
-		System.setProperty("javax.net.ssl.trustStore", "sslservertrust");
+		System.setProperty("javax.net.ssl.trustStore", "sslclienttrust");
 		System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 		SSLSocket sslsocket = null;
 		BufferedReader br = null;
@@ -55,7 +55,7 @@ public class JabberClient {
 			}
 		}
 	}
-	
+
 	public static String sendSocket(String server, int port, String message) {
 		SSLSocket sslsocket = null;
 		BufferedReader br = null;
@@ -63,17 +63,17 @@ public class JabberClient {
 		String str = "";
 		try {
 			SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-			sslsocket = (SSLSocket) sslsocketfactory.createSocket(server, port);
+			sslsocket = (SSLSocket) sslsocketfactory.createSocket(server, 9999);
 			System.out.println("sslsocket=" + sslsocket);
 			br = new BufferedReader(new InputStreamReader(sslsocket.getInputStream()));
 			pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sslsocket.getOutputStream())));
 			pw.println(message);
 			pw.flush();
-			str += (br.readLine()+ "\n");
+			str += (br.readLine() + "\n");
 			for (int i = 0; i < 10; i++) {
 				pw.println("howdy " + i);
 				pw.flush();
-				str += (br.readLine()+ "\n");
+				str += (br.readLine() + "\n");
 			}
 			System.out.println(str);
 			pw.println("END");

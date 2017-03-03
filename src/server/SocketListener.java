@@ -13,7 +13,7 @@ import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
 
-public class MultiJabberServer {
+public class SocketListener {
 
 	public static void main(String[] args) {
 		System.setProperty("javax.net.ssl.keyStore", "sslserverkeys");
@@ -29,7 +29,7 @@ public class MultiJabberServer {
 			while (true) {
 				sslsocket = (SSLSocket) sslserversocket.accept();
 				System.out.println("sslsocket:" + sslsocket);
-				new ServeOneJabber(sslsocket);
+				new SocketHandler(sslsocket);
 			}
 		} catch (Exception e) {
 			try {

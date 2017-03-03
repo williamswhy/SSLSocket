@@ -15,12 +15,12 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import javax.net.ssl.SSLSocket;
 
-public class ServeOneJabber extends Thread {
+public class SocketHandler extends Thread {
 	private SSLSocket socket = null;
 	private BufferedReader br = null;
 	private PrintWriter pw = null;
 
-	public ServeOneJabber(SSLSocket s) {
+	public SocketHandler(SSLSocket s) {
 		socket = s;
 		try {
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
