@@ -45,6 +45,7 @@ public class SocketHandler extends Thread {
 				str = br.readLine();
 				//if it is "END", disconnect
 				if (str.equals("END")) {
+					pw.println("END");
 					System.out.println("close......");
 					br.close();
 					pw.close();
