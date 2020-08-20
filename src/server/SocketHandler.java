@@ -1,7 +1,7 @@
 /*
  * SocketHandler.java
  * Author: Williams Wang
- * Last Edit:3/3/17 by why
+ * Last Edit: 8/20/2020 by why
  * 
  * A Thread to deal with socket messages.
  */
@@ -20,7 +20,7 @@ public class SocketHandler extends Thread {
 	private BufferedReader br = null;
 	private PrintWriter pw = null;
 
-	/*
+	/**
 	 * Constructor - initialize variables
 	 * 
 	 * @param s - an ssl socket created by SocketListener
@@ -39,13 +39,11 @@ public class SocketHandler extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			String str;
 			try {
 				//read a line
-				str = br.readLine();
+				String str = br.readLine();
 				//if it is "END", disconnect
 				if (str.equals("END")) {
-					pw.println("END");
 					System.out.println("close......");
 					br.close();
 					pw.close();
@@ -58,9 +56,11 @@ public class SocketHandler extends Thread {
 				System.out.println("Client Socket Message:" + str);
 			} catch (Exception e) {
 				try {
+					System.out.println("close......");
 					br.close();
 					pw.close();
 					socket.close();
+					break;
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
