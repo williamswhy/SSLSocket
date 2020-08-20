@@ -1,7 +1,7 @@
 /*
  * SocketClient.java
  * Author: Williams Wang
- * Last Edit: 3/3/17 by why
+ * Last Edit: 8/20/2020 by why
  * 
  * This class is the client which can send ssl socket to SocketListener. 
  * With both main() function and sendSocket() function, it can send a socket either from console
@@ -20,7 +20,7 @@ import javax.net.ssl.SSLSocketFactory;
 
 public class SocketClient {
 	
-	/*
+	/**
 	 * SendSocket - send a socket to a target
 	 * 
 	 * @param server - target server
@@ -65,7 +65,7 @@ public class SocketClient {
 		System.out.println("Usage:\n\tjava client.SocketClient [address] [port] [message]");
 	}
 	
-	/*
+	/**
 	 * main - send a socket from system command
 	 * 
 	 * @param args[0] target address

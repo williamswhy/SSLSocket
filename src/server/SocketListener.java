@@ -1,9 +1,9 @@
 /*
  * SocketListener.java
  * Author: Williams Wang
- * Last Edit: 3/3/17 by why
+ * Last Edit: 8/20/2020 by why
  *
- * This class is a listener on port 9999. Every ssl socket sent to this port
+ * This class is a listener socket listener. Every ssl socket
  * will be assigned to a new thread called SocketHandler.
  */
 package server;
@@ -14,7 +14,7 @@ import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
 
 public class SocketListener {
-    /*
+    /**
      * main - listen a specific port. When receiving socket, start a new thread
      * to process data so that the program can process multiple socket at the
      * same time

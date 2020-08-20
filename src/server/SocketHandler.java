@@ -1,7 +1,7 @@
 /*
  * SocketHandler.java
  * Author: Williams Wang
- * Last Edit:3/3/17 by why
+ * Last Edit: 8/20/2020 by why
  * 
  * A Thread to deal with socket messages.
  */
@@ -20,7 +20,7 @@ public class SocketHandler extends Thread {
 	private BufferedReader br = null;
 	private PrintWriter pw = null;
 
-	/*
+	/**
 	 * Constructor - initialize variables
 	 * 
 	 * @param s - an ssl socket created by SocketListener
