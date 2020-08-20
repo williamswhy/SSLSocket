@@ -14,7 +14,7 @@ javac -d bin src/client/*.java
 javac -d bin src/server/*.java
 
 ```
-###Start server & client
+### Start server & client
 server:
 ```shell script
 java server.SocketListener
