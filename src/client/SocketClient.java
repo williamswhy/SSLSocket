@@ -33,7 +33,7 @@ public class SocketClient {
 		SSLSocket sslsocket = null;
 		BufferedReader br = null;
 		PrintWriter pw = null;
-		String str = "";
+		StringBuilder str = new StringBuilder();
 		try {
 			SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 			sslsocket = (SSLSocket) sslsocketfactory.createSocket(server, port);
@@ -42,13 +42,8 @@ public class SocketClient {
 			pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sslsocket.getOutputStream())));
 			pw.println(message);
 			pw.flush();
-			str += (br.readLine() + "\n");
-			for (int i = 0; i < 10; i++) {
-				pw.println("howdy " + i);
-				pw.flush();
-				str += (br.readLine() + "\n");
-			}
-			System.out.println(str);
+			str.append(br.readLine());
+			str.append('\n');
 			pw.println("END");
 			pw.flush();
 		} catch (Exception e) {
@@ -63,7 +58,11 @@ public class SocketClient {
 				e.printStackTrace();
 			}
 		}
-		return str;
+		return str.toString();
+	}
+
+	public static void printUsage() {
+		System.out.println("Usage:\n\tjava client.SocketClient [address] [port] [message]");
 	}
 	
 	/*
@@ -76,8 +75,14 @@ public class SocketClient {
 	 * @print received responses
 	 */
 	public static void main(String[] args) {
-		System.setProperty("javax.net.ssl.trustStore", "sslclienttrust");
-		System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+		if(args.length != 3) {
+			printUsage();
+			return;
+		}
+		if(System.getProperty("javax.net.ssl.trustStore") == null || System.getProperty("javax.net.ssl.trustStorePassword") == null) {
+			System.setProperty("javax.net.ssl.trustStore", "sslclienttrust");
+			System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+		}
 		System.out.println(sendSocket(args[0], Integer.parseInt(args[1]), args[2]));
 	}
 }
